@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SiteMate</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b0b0d">
+<style>
+body{margin:0;background:#0b0b0d;color:#fff;font-family:-apple-system,sans-serif}
+.w{max-width:430px;margin:auto;padding:20px}
+.c{background:#17181c;border-radius:18px;padding:16px;margin:16px 0}
+input,textarea{width:100%;padding:12px;border:none;border-radius:12px;background:#2a2b31;color:#fff;box-sizing:border-box}
+button{width:100%;padding:14px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-weight:600;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>🏗️ SiteMate</h1>
+<p>Civil Engineer Work App</p>
+
+<div class="c">
+<h3>Cube Weight Calculator</h3>
+<input id="s" value="150" type="number">
+<input id="d" value="2.4" type="number" step="0.01">
+<button onclick="calc()">Calculate</button>
+<h2 id="o"></h2>
+</div>
+
+<div class="c">
+<h3>QA/QC Observation</h3>
+<input id="l" placeholder="Location">
+<textarea id="q" rows="4"></textarea>
+<button onclick="rep()">Generate Report</button>
+<pre id="r"></pre>
+</div>
+</div>
+
+<script>
+if('serviceWorker' in navigator){
+ navigator.serviceWorker.register('service-worker.js');
+}
+function calc(){
+ let x=s.value/1000;
+ o.innerText=((x*x*x)*(d.value*1000)).toFixed(2)+' kg';
+}
+function rep(){
+ r.innerText='QA/QC SITE OBSERVATION\n\nLocation: '+l.value+'\n\nObservation:\n'+q.value;
+}
+</script>
+</body>
+</html>
